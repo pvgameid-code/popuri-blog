@@ -89,8 +89,19 @@ a:hover { text-decoration: underline; }
 .post ul, .post ol { padding-left: 22px; }
 .post li { margin: 6px 0; }
 .post strong { color: var(--brand-dark); }
+.post h3 { font-size: 1.08rem; margin: 22px 0 8px; color: var(--brand-dark); }
 .nick { background: var(--gold); color: #4a3200; font-weight: 700;
   padding: 1px 8px; border-radius: 6px; }
+
+/* ===== 표 (카드 라이프 등) ===== */
+.table-wrap { overflow-x: auto; margin: 16px 0; }
+.card-table { border-collapse: collapse; width: 100%; font-size: 0.94rem;
+  background: #fff; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); }
+.card-table th, .card-table td { padding: 10px 14px; text-align: left;
+  border-bottom: 1px solid var(--line); }
+.card-table thead th { background: #fdeee8; color: var(--brand-dark); font-weight: 700; }
+.card-table tbody tr:last-child td { border-bottom: none; }
+.card-table td:first-child { font-weight: 700; color: var(--brand-dark); white-space: nowrap; }
 
 blockquote {
   margin: 18px 0; padding: 14px 18px; background: #f4f8f5;
