@@ -1,0 +1,216 @@
+/* ============================================================
+   🌸 호떡해의 포푸리트릭스터 — 티스토리 가독성 커스텀 CSS
+   ------------------------------------------------------------
+   사용법: 티스토리 [관리 → 꾸미기 → 스킨편집 → html 편집 → CSS 탭]
+           맨 아래에 이 파일 내용 전체를 붙여넣고 [적용].
+   추천 스킨: "Odyssey"(기본·반응형) 또는 "Book Club"(읽기 특화).
+   ------------------------------------------------------------
+   브랜드 색을 바꾸고 싶으면 아래 :root 변수만 고치면 전체 반영돼요.
+   ============================================================ */
+
+/* 한글 가독성 좋은 프리텐다드 폰트 (차단돼도 아래 폰트로 자동 대체) */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+:root {
+  --ink:      #3a2f2a;   /* 본문 글자 (따뜻한 진갈색) */
+  --ink-soft: #6b5b52;   /* 보조 글자 */
+  --muted:    #8a7a72;   /* 날짜·메타 */
+  --accent:   #c85a3d;   /* 포인트(제목·강조) 주황빨강 */
+  --accent-2: #81b29a;   /* 서브 포인트 초록 */
+  --gold-bg:  #f2b705;   /* 형광펜 배경 */
+  --gold-ink: #4a3200;   /* 형광펜 글자 */
+  --paper:    #fffaf6;   /* 페이지 배경 크림색 */
+  --card:     #ffffff;   /* 카드/본문 배경 */
+  --line:     #f0e2d8;   /* 옅은 구분선 */
+  --read:     720px;     /* 본문 최대 폭(읽기 편한 한 줄 길이) */
+}
+
+/* ---------- 기본 타이포 & 배경 ---------- */
+body,
+.tt_article_useless_p_margin,
+.contents_style,
+.article,
+.entry-content,
+.post-content,
+#content {
+  font-family: "Pretendard", "Pretendard Variable", -apple-system,
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--paper);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  word-break: keep-all;      /* 한글 단어 안 끊기게 (핵심 가독성) */
+  overflow-wrap: break-word;
+}
+
+/* ---------- 본문 읽기 영역 ---------- */
+/* 티스토리 표준 본문 래퍼들을 폭넓게 지정 (스킨 달라도 최대한 적용) */
+.tt_article_useless_p_margin,
+.contents_style,
+.article .article_view,
+.entry-content,
+.post-content,
+.area_view {
+  font-size: 1.075rem;       /* 살짝 큰 글씨 = 편안 */
+  line-height: 1.9;          /* 넉넉한 줄간격 = 가독성 */
+  color: var(--ink);
+}
+
+/* 본문 문단 간격 */
+.tt_article_useless_p_margin p,
+.contents_style p,
+.entry-content p,
+.post-content p {
+  margin: 0 0 1.15em;
+}
+
+/* 본문을 화면 가운데 편한 폭으로 (너무 넓게 퍼지는 것 방지) */
+.article .inner,
+.article_view,
+.entry-content,
+.post-content,
+.contents_style {
+  max-width: var(--read);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- 제목 ---------- */
+.contents_style h1, .contents_style h2, .contents_style h3,
+.entry-content h1, .entry-content h2, .entry-content h3,
+.tt_article_useless_p_margin h2, .tt_article_useless_p_margin h3 {
+  color: var(--accent);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  margin: 1.8em 0 0.6em;
+  scroll-margin-top: 80px;
+}
+.contents_style h2, .entry-content h2 { font-size: 1.35rem; }
+.contents_style h3, .entry-content h3 { font-size: 1.15rem; }
+
+/* ---------- 링크 ---------- */
+a { color: var(--accent); }
+.contents_style a,
+.entry-content a,
+.post-content a {
+  color: #b04a30;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200, 90, 61, 0.35);
+  transition: border-color .15s, background .15s;
+}
+.contents_style a:hover,
+.entry-content a:hover {
+  border-bottom-color: var(--accent);
+  background: rgba(242, 183, 5, 0.12);
+}
+
+/* ---------- 이미지: 반응형 + 부드러운 모서리 ---------- */
+.contents_style img,
+.entry-content img,
+.post-content img,
+.article img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 3px 14px rgba(120, 80, 60, 0.12);
+}
+figure figcaption,
+.contents_style img + em {
+  display: block;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* ---------- 인용구(글에 인라인 스타일 없을 때 대비) ---------- */
+.contents_style blockquote:not([style]),
+.entry-content blockquote:not([style]) {
+  margin: 1.4em 0;
+  padding: 14px 18px;
+  background: #f4f8f5;
+  border-left: 4px solid var(--accent-2);
+  border-radius: 0 10px 10px 0;
+  color: #4a5a52;
+}
+
+/* ---------- 형광펜 강조(원하면 <span class="hl">호떡해</span>) ---------- */
+.hl {
+  background: var(--gold-bg);
+  color: var(--gold-ink);
+  font-weight: 700;
+  padding: 1px 8px;
+  border-radius: 6px;
+}
+
+/* ---------- 목록 ---------- */
+.contents_style ul, .contents_style ol,
+.entry-content ul, .entry-content ol {
+  padding-left: 1.4em;
+  line-height: 1.85;
+}
+.contents_style li, .entry-content li { margin: 0.35em 0; }
+
+/* ---------- 표: 넘치면 가로 스크롤 ---------- */
+.contents_style table,
+.entry-content table {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+  font-size: 0.98rem;
+}
+.contents_style th, .contents_style td,
+.entry-content th, .entry-content td {
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+  text-align: center;
+}
+.contents_style th, .entry-content th {
+  background: #fff3ea;
+  color: var(--accent);
+}
+
+/* ---------- 코드 ---------- */
+.contents_style code, .entry-content code {
+  background: #f3ece6;
+  color: #a2432b;
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 0.95em;
+}
+
+/* ---------- 블로그 제목 / 상단 헤더 (스킨별 공통 후보) ---------- */
+.blog-title, .blogTitle, .titleWrap, .logo,
+#header h1, .header_tit, .tit_blog {
+  letter-spacing: -0.02em;
+}
+
+/* ---------- 목록(홈)에서 글 제목 ---------- */
+.list_content .title_post,
+.post-item .title,
+.article-list .title a {
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+/* ---------- 날짜/메타 ---------- */
+.date, .article_info, .txt_info, .post-meta {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- 모바일에서 글씨 조금 더 편하게 ---------- */
+@media (max-width: 600px) {
+  .tt_article_useless_p_margin,
+  .contents_style,
+  .entry-content,
+  .post-content {
+    font-size: 1.02rem;
+    line-height: 1.85;
+  }
+}
